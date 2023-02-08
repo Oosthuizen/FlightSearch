@@ -1,0 +1,214 @@
+<mat-card>
+    <mat-card-content>Welcome to Flight Search! </mat-card-content>
+</mat-card>
+
+<br />
+
+<mat-card>
+    <mat-stepper linear #stepper>
+        <mat-step [stepControl]="flightDetailsStepperForm">
+
+            <form [formGroup]="flightDetailsStepperForm">
+
+                <ng-template matStepLabel>Search for a flight</ng-template>
+
+                <div class="row">
+
+                    <mat-form-field appearance="fill" style="margin-right: 100px;">
+                        <mat-label>Select flight type</mat-label>
+                        <mat-select formControlName="flightType">
+                            <mat-option *ngFor="let type of flightTypeArr" [value]="type.type">
+                                {{type.type}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Departure location</mat-label>
+                        <mat-select formControlName="fromLocation">
+                            <mat-option *ngFor="let location of locationsArr" [value]="location.name">
+                                {{location.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" style="margin-left: 100px;">
+                        <mat-label>Arrival location</mat-label>
+                        <mat-select formControlName="toLocation">
+                            <mat-option *ngFor="let location of locationsArr" [value]="location.name">
+                                {{location.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="row">
+
+                    <mat-form-field appearance="fill" style="margin-right: 50px;">
+                        <mat-label>Choose a departure date</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="fromDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" style="margin-left: 50px;">
+                        <mat-label>Choose a arrival date</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="toDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="row">
+
+                    <mat-form-field appearance="fill" style="margin-right: 50px;">
+                        <mat-label>Number of passenegers</mat-label>
+                        <input matInput placeholder="Number of passenegers" formControlName="numberOfPeople">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" style="margin-left: 50px;">
+                        <mat-label>Select class</mat-label>
+                        <mat-select formControlName="flightType">
+                            <mat-option *ngFor="let class of classTypeArr" [value]="class.id">
+                                {{class.class}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="pull-right">
+                    <button mat-button (click)="stepperFirstStep()">Next</button>
+                </div>
+
+            </form>
+        </mat-step>
+        <mat-step #stepper>
+            <form>
+                <ng-template matStepLabel>Flight Results</ng-template>
+
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>No.</th>
+                        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Departure Location">
+                        <th mat-header-cell *matHeaderCellDef>Departure Location</th>
+                        <td mat-cell *matCellDef="let element">{{element.departLocation}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Arrival Location">
+                        <th mat-header-cell *matHeaderCellDef>Arrival Location</th>
+                        <td mat-cell *matCellDef="let element">{{element.arrivalLocation}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Flight Date">
+                        <th mat-header-cell *matHeaderCellDef>Flight Date</th>
+                        <td mat-cell *matCellDef="let element">{{element.flightDate}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Flight Time">
+                        <th mat-header-cell *matHeaderCellDef>Flight Time</th>
+                        <td mat-cell *matCellDef="let element">{{element.flightTime}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Company">
+                        <th mat-header-cell *matHeaderCellDef>Company</th>
+                        <td mat-cell *matCellDef="let element">{{element.company}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Travel Time">
+                        <th mat-header-cell *matHeaderCellDef>Travel Time</th>
+                        <td mat-cell *matCellDef="let element">{{element.travelTimeEstimate}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Cost">
+                        <th mat-header-cell *matHeaderCellDef>Cost</th>
+                        <td mat-cell *matCellDef="let element">{{element.cost}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Flight Code">
+                        <th mat-header-cell *matHeaderCellDef>Flight Code</th>
+                        <td mat-cell *matCellDef="let element">{{element.flightCode}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                    <tr (click)="selectedFlight.add(row);validateChosenflight()" mat-row
+                        *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="personDetailsStepperForm">
+            <form [formGroup]="personDetailsStepperForm">
+                <ng-template matStepLabel>Your Personal Details</ng-template>
+
+                <div class="row">
+                    <mat-form-field appearance="fill" style="margin-right: 100px;">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Full names" formControlName="name">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Surname</mat-label>
+                        <input matInput placeholder="Surname" formControlName="surname">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+
+                    <mat-form-field appearance="fill" style="margin-right: 100px;">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email address" formControlName="email">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Contact number</mat-label>
+                        <input matInput placeholder="Cellphone number with country code"
+                            formControlName="contactDetails">
+                    </mat-form-field>
+                </div>
+
+            </form>
+            <div>
+                <button mat-button (click)="stepperThirdStep()">Next</button>
+                <button mat-button matStepperPrevious>Back</button>
+            </div>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Overview</ng-template>
+            <mat-card *ngIf="overviewCompany">
+                <mat-card-header>
+                    <mat-card-title>{{overviewCompany + " ("+ overviewFlightCode +")" + " " +
+                        overviewCost}}</mat-card-title>
+                    <mat-card-subtitle>{{overviewDepartLoction + " -> " + overviewArrivalLoction + "(" +
+                        overviewFlightDate + ") @ " + overviewFlightTime }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <h4>Passenger Name:</h4>
+                    <p>{{overviewCustName + " " + overviewCustSurname}}</p>
+                    <h4>Contact Number:</h4>
+                    <p>{{overviewContactDetail}}</p>
+                    <h4>Email:</h4>
+                    <p>{{overviewEmail}}</p>
+                    <h4>Flight Details:</h4>
+                    <p>Amount of Passengers{{" (" +overviewAmountOfPeople + "), --- Travel Time (" + overviewTravelTimeEstimate + ")" }}</p>
+                </mat-card-content>
+            </mat-card>
+            <mat-card *ngIf="!overviewCompany">
+                Data not set.
+            </mat-card>
+            <div>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+</mat-card>

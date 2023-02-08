@@ -1,0 +1,13 @@
+{
+    "locations": [
+      {
+        "id": 1,
+        "name": "(JNB) Johannesburg, O.R. Tambo International"
+      },
+      {
+        "id": 2,
+        "name": "(AMS) Amsterdam, Schiphol Airport"
+      }
+    ]
+
+}

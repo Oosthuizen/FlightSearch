@@ -1,0 +1,49 @@
+{
+    "flightResults": [
+      {
+        "id": 1,
+        "departLocation": "(JNB) Johannesburg, O.R. Tambo International",
+        "arrivalLocation": "(AMS) Amsterdam, Schiphol Airport",
+        "flightDate": "01-04-2023",
+        "flightTime": "23:10 - 10:15",
+        "company": "KLM",
+        "travelTimeEstimate": "11H05",
+        "cost": 600,
+        "flightCode": "KL0592"
+      },
+      {
+        "id": 2,
+        "departLocation": "(JNB) Johannesburg, O.R. Tambo International",
+        "arrivalLocation": "(AMS) Amsterdam, Schiphol Airport",
+        "flightDate": "02-04-2023",
+        "flightTime": "18:50 - 08:35 (+ 1 day)",
+        "company": "AIRFRANCE",
+        "travelTimeEstimate": "13H45",
+        "cost": 630,
+        "flightCode": "AF1240"
+      },
+      {
+        "id": 3,
+        "departLocation": "(JNB) Johannesburg, O.R. Tambo International",
+        "arrivalLocation": "(AMS) Amsterdam, Schiphol Airport",
+        "flightDate": "03-04-2023",
+        "flightTime": "23:10 - 10:15",
+        "company": "KLM",
+        "travelTimeEstimate": "11H05",
+        "cost": 640,
+        "flightCode": "KL0592"
+      },
+      {
+        "id": 4,
+        "departLocation": "(JNB) Johannesburg, O.R. Tambo International",
+        "arrivalLocation": "(AMS) Amsterdam, Schiphol Airport",
+        "flightDate": "04-04-2023",
+        "flightTime": "23:10 - 10:15",
+        "company": "KLM",
+        "travelTimeEstimate": "11H05",
+        "cost": 650,
+        "flightCode": "KL0592"
+      }
+    ]
+
+}

@@ -1,0 +1,17 @@
+{
+    "classType": [
+      {
+        "id": 1,
+        "class": "Economy Class"
+      },
+      {
+        "id": 2,
+        "class": "Business Class"
+      },
+      {
+        "id": 3,
+        "class": "First Class"
+      }
+    ]
+
+}

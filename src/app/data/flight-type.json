@@ -1,0 +1,13 @@
+{
+    "flightType": [
+      {
+        "id": 1,
+        "type": "Return Flight"
+      },
+      {
+        "id": 2,
+        "type": "One-way Flight"
+      }
+    ]
+
+}
